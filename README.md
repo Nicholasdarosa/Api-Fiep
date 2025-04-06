@@ -108,15 +108,6 @@ Arquivo de coleção incluído na pasta raiz com o nome:
 postman_collection_api_fiep.json
 ```
 
----
-
-## 📧 Entrega
-
-O link do repositório GitHub deve ser enviado para:
-**ana.koberstay@sistemafiep.org.br**  
-Assunto do e-mail: `16250`
-
----
 
 ## 👨‍💻 Autor
 

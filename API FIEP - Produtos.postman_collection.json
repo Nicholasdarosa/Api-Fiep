@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "ee357042-0dbb-4c26-bde7-fa4321e29775",
+		"name": "API FIEP - Produtos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29939944"
+	},
+	"item": [
+		{
+			"name": "Cadastrar produto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFjYjJhOTgwMGRjYzZjYTYwOGZkZCIsImlhdCI6MTc0Mzg5OTUxNiwiZXhwIjoxNzQzOTg1OTE2fQ.xHhfHipLFXGnTbB0D1u0ET-XkVU3YPbHXnW2fvxJRGo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Caixa de Som Bluetooth\",\r\n    \"descricao\": \"Graves potentes e bateria duradoura\",\r\n    \"preco\": 249.90,\r\n    \"quantidade\": 18,\r\n    \"categoria\": \"Áudio\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/produtos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os produtos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFjYjJhOTgwMGRjYzZjYTYwOGZkZCIsImlhdCI6MTc0Mzg5OTUxNiwiZXhwIjoxNzQzOTg1OTE2fQ.xHhfHipLFXGnTbB0D1u0ET-XkVU3YPbHXnW2fvxJRGo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/produtos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar produto por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/produtos/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"produtos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Atualizar produto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Teclado Mecânico Atualizado\",\r\n  \"descricao\": \"Atualizado - Teclado RGB\",\r\n  \"preco\": 349.90,\r\n  \"quantidade\": 8,\r\n  \"categoria\": \"Periféricos\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/produtos/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"produtos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover Produto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFjYjJhOTgwMGRjYzZjYTYwOGZkZCIsImlhdCI6MTc0Mzg5OTUxNiwiZXhwIjoxNzQzOTg1OTE2fQ.xHhfHipLFXGnTbB0D1u0ET-XkVU3YPbHXnW2fvxJRGo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/produtos/:",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"produtos",
+						":"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Usuário Teste\",\r\n  \"email\": \"teste@teste.com\",\r\n  \"senha\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"teste@teste.com\",\r\n  \"senha\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFjYjJhOTgwMGRjYzZjYTYwOGZkZCIsImlhdCI6MTc0Mzg5OTUxNiwiZXhwIjoxNzQzOTg1OTE2fQ.xHhfHipLFXGnTbB0D1u0ET-XkVU3YPbHXnW2fvxJRGo",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "{tokken}",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFjYjJhOTgwMGRjYzZjYTYwOGZkZCIsImlhdCI6MTc0Mzg5OTUxNiwiZXhwIjoxNzQzOTg1OTE2fQ.xHhfHipLFXGnTbB0D1u0ET-XkVU3YPbHXnW2fvxJRGo",
+			"type": "string"
+		}
+	]
+}

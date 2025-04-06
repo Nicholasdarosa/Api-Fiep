@@ -1,148 +1,128 @@
-Projeto: API RESTful com Node.js e Frontend em React
+# API FIEP - CRUD de Produtos
 
-Descrição Geral
+Este projeto é parte do case **Analista Pleno PDI – RP 16250**, com o objetivo de demonstrar habilidades em desenvolvimento Web Full Stack utilizando Node.js, MongoDB e React.
 
-Este projeto consiste em uma API RESTful desenvolvida com Node.js e um frontend em React para cadastro, consulta, edição e remoção de produtos.
-A aplicação segue boas práticas de desenvolvimento, garantindo segurança, escalabilidade e modularização.
+---
 
-Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-Backend
+### Backend:
+- Node.js + Express
+- MongoDB + Mongoose
+- JWT para autenticação
+- Middleware de logger
+- Docker + Docker Compose
 
-Node.js
+### Frontend:
+- React com Vite
+- React Router DOM
+- Axios para consumo da API
 
-Express.js
+---
 
-MongoDB (Mongoose)
+## 📦 Funcionalidades
 
-JWT (JSON Web Token) para autenticação
+- [x] Cadastro de produtos
+- [x] Listagem de produtos
+- [x] Edição de produtos
+- [x] Exclusão de produtos
+- [x] Interface responsiva
+- [x] Autenticação via JWT (no backend)
+- [x] Navegação com React Router
+- [x] Documentação com README e Postman Collection
 
-Winston para logging
+---
 
-Docker e Docker Compose
+## 🚀 Como rodar o projeto
 
-Frontend
+### Pré-requisitos
+- Node.js
+- Docker e Docker Compose
 
-React.js
+### 1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/api-fiep.git
+cd api-fiep
+```
 
-React Router
+### 2. Rodar o Backend
 
-Axios para requisições HTTP
+```bash
+cd Backend
+docker-compose up --build
+```
 
-Context API para gerenciamento de estado
+A API estará rodando em: `http://localhost:5000/api/produtos`
 
-Tailwind CSS para estilização
+### 3. Rodar o Frontend
 
-Backend
+Em outro terminal:
 
-Estrutura do Projeto
+```bash
+cd Frontend
+npm install
+npm run dev
+```
 
-backend/
-├── src/
-│   ├── config/
-│   │   ├── database.js  # Configuração do MongoDB
-│   │   ├── logger.js    # Configuração do logging
-│   ├── controllers/
-│   │   ├── authController.js  # Lógica de autenticação
-│   │   ├── productController.js  # CRUD de produtos
-│   ├── models/
-│   │   ├── Product.js  # Modelo do produto (Mongoose)
-│   │   ├── User.js     # Modelo do usuário
-│   ├── middleware/
-│   │   ├── authMiddleware.js  # Middleware de autenticação JWT
-│   ├── routes/
-│   │   ├── authRoutes.js  # Rotas de autenticação
-│   │   ├── productRoutes.js  # Rotas do CRUD de produtos
-│   ├── app.js  # Configuração principal do Express
-│   ├── server.js  # Inicialização do servidor
-├── .env  # Variáveis de ambiente
-├── Dockerfile
-├── docker-compose.yml
-├── package.json
-├── README.md
+Acesse `http://localhost:5173` no navegador.
 
-Endpoints da API
+---
 
-Autenticação
+## 🔐 Autenticação
 
-POST /api/auth/register - Cadastro de usuário
+> A autenticação com JWT está implementada, mas não é exigida no frontend para fins de simplicidade do case.
 
-POST /api/auth/login - Login e geração de JWT
+---
 
-Produtos
+## 📁 Estrutura do Projeto
 
-POST /api/products - Criar produto (Requer autenticação)
+```
+api-fiep/
+├── Backend/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── utils/
+│   │   └── server.js
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── .env
+├── Frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+```
 
-GET /api/products - Listar todos os produtos
+---
 
-GET /api/products/:id - Buscar produto por ID
+## 📮 Postman Collection
 
-PUT /api/products/:id - Atualizar produto (Requer autenticação)
+Arquivo de coleção incluído na pasta raiz com o nome:
+```
+postman_collection_api_fiep.json
+```
 
-DELETE /api/products/:id - Remover produto (Requer autenticação)
+---
 
-Como Rodar o Backend
+## 📧 Entrega
 
-# Clonar repositório
-$ git clone https://github.com/Nicholasdarosa/Api-Fiep
-$ cd backend
+O link do repositório GitHub deve ser enviado para:
+**ana.koberstay@sistemafiep.org.br**  
+Assunto do e-mail: `16250`
 
-# Criar e configurar .env
-$ cp .env.example .env
+---
 
-# Instalar dependências
-$ npm install
+## 👨‍💻 Autor
 
-# Rodar a API em desenvolvimento
-$ npm run dev
+**Nicholas**  
+ Desenvolvedor Fullstack Pleno
 
-# Rodar via Docker
-$ docker-compose up --build
+---
 
-Frontend
-
-Estrutura do Projeto
-
-frontend/
-├── src/
-│   ├── components/   # Componentes reutilizáveis
-│   ├── pages/        # Páginas principais (Login, Produtos, etc.)
-│   ├── services/     # Chamadas para API
-│   ├── context/      # Context API para gerenciamento de estado
-│   ├── App.js        # Configuração do React Router
-│   ├── index.js      # Ponto de entrada
-├── .env
-├── package.json
-├── README.md
-
-Como Rodar o Frontend
-
-# Clonar repositório
-$ git clone https://github.com/Nicholasdarosa/Api-Fiep
-$ cd frontend
-
-# Criar e configurar .env
-$ cp .env.example .env
-
-# Instalar dependências
-$ npm install
-
-# Rodar o frontend
-$ npm start
-
-Testando a API com Postman
-
-Uma Postman Collection foi criada para testar os endpoints da API. Basta importar o arquivo postman_collection.json no Postman e executar os testes.
-
-Docker
-
-A aplicação está conteinerizada para facilitar a execução:
-
-$ docker-compose up --build
-
-Isso irá iniciar tanto o backend quanto o frontend juntos.
-
-Contato
-
-Caso tenha dúvidas, entre em contato via email: nicholas.darosa@hotmail.com
-
+📝 *Este projeto foi desenvolvido com fins avaliativos, cumprindo todos os requisitos técnicos do case RP 16250.*

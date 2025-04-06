@@ -4,9 +4,11 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
 const logger = require('./utils/logger');
+const authRoutes = require('./routes/authRoutes');
 
 dotenv.config();
 connectDB();
+
 
 const app = express();
 app.use(cors());
@@ -14,6 +16,7 @@ app.use(express.json());
 app.use(logger);
 
 app.use('/api/produtos', productRoutes);
+app.use('/api/auth', authRoutes);
 
 app.use((req, res) => res.status(404).json({ message: 'Rota não encontrada' }));
 

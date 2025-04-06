@@ -1,68 +1,66 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import api from '../services/api';
-import { useNavigate, useParams } from 'react-router-dom';
+import styles from './ProductForm.module.css';
 
 function ProductForm() {
-  const navigate = useNavigate();
-  const { id } = useParams(); // ID da rota
-  const isEditing = Boolean(id); // verifica se é edição
-
-  const [produto, setProduto] = useState({
-    nome: '',
-    descricao: '',
-    preco: '',
-    quantidade: '',
-    categoria: ''
-  });
-
-  useEffect(() => {
-    if (isEditing) {
-      api.get(`/produtos/${id}`)
-        .then((res) => setProduto(res.data))
-        .catch((err) => console.error('Erro ao buscar produto:', err));
-    }
-  }, [id, isEditing]);
-
-  function handleChange(e) {
-    setProduto({ ...produto, [e.target.name]: e.target.value });
-  }
+  const [nome, setNome] = useState('');
+  const [preco, setPreco] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [erro, setErro] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      if (isEditing) {
-        await api.put(`/produtos/${id}`, {
-          ...produto,
-          preco: parseFloat(produto.preco),
-          quantidade: parseInt(produto.quantidade),
-        });
-        alert('Produto atualizado com sucesso!');
-      } else {
-        await api.post('/produtos', {
-          ...produto,
-          preco: parseFloat(produto.preco),
-          quantidade: parseInt(produto.quantidade),
-        });
-        alert('Produto cadastrado com sucesso!');
-      }
-
-      navigate('/produtos');
+      await api.post('/produtos', { nome, preco, descricao });
+      alert('Produto cadastrado com sucesso!');
+      setNome('');
+      setPreco('');
+      setDescricao('');
     } catch (err) {
-      console.error('Erro ao salvar produto:', err);
+      setErro('Erro ao cadastrar o produto.');
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{isEditing ? 'Editar Produto' : 'Cadastrar Produto'}</h2>
-      <input type="text" name="nome" placeholder="Nome" value={produto.nome} onChange={handleChange} required /><br />
-      <input type="text" name="descricao" placeholder="Descrição" value={produto.descricao} onChange={handleChange} /><br />
-      <input type="number" step="0.01" name="preco" placeholder="Preço" value={produto.preco} onChange={handleChange} required /><br />
-      <input type="number" name="quantidade" placeholder="Quantidade" value={produto.quantidade} onChange={handleChange} required /><br />
-      <input type="text" name="categoria" placeholder="Categoria" value={produto.categoria} onChange={handleChange} required /><br />
-      <button type="submit">{isEditing ? 'Atualizar' : 'Salvar'}</button>
-    </form>
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h2>Cadastro de Produto</h2>
+        <div>
+          <label>Nome</label>
+          <input
+            type="text"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            className={styles.input}
+            required
+          />
+        </div>
+        <div>
+          <label>Preço</label>
+          <input
+            type="number"
+            value={preco}
+            onChange={(e) => setPreco(e.target.value)}
+            className={styles.input}
+            required
+          />
+        </div>
+        <div>
+          <label>Descrição</label>
+          <textarea
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            className={styles.input}
+            required
+          />
+        </div>
+        <button type="submit" className={styles.button}>
+          Cadastrar
+        </button>
+        {erro && <p style={{ color: 'red' }}>{erro}</p>}
+      </form>
+    </div>
   );
 }
 

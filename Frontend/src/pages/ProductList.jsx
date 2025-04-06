@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import styles from './ProductList.module.css'; 
 
 function ProductList() {
   const [produtos, setProdutos] = useState([]);
@@ -24,7 +25,7 @@ function ProductList() {
       try {
         await api.delete(`/produtos/${id}`);
         alert('Produto excluído com sucesso!');
-        fetchProdutos(); // recarrega lista
+        fetchProdutos(); 
       } catch (err) {
         console.error('Erro ao excluir produto:', err);
       }
@@ -32,17 +33,24 @@ function ProductList() {
   }
 
   return (
-    <div>
+    <div className={styles.productListContainer}>
       <h2>Lista de Produtos</h2>
-      <ul>
+      <div className={styles.productCards}>
         {produtos.map((produto) => (
-          <li key={produto._id}>
-            {produto.nome} - R$ {produto.preco.toFixed(2)} &nbsp;
-            <button onClick={() => navigate(`/produtos/editar/${produto._id}`)}>Editar</button>
-            <button onClick={() => excluirProduto(produto._id)} style={{ marginLeft: '8px' }}>Excluir</button>
-          </li>
+          <div key={produto._id} className={styles.card}>
+            {/* <img src={produto.imagem || 'default-image.jpg'} alt={produto.nome} className={styles.cardImage} /> */}
+            <div className={styles.cardDetails}>
+              <h3>{produto.nome}</h3>
+              <p><strong>Preço:</strong> R$ {produto.preco.toFixed(2)}</p>
+              <p><strong>Descrição:</strong> {produto.descricao}</p>
+              <div className={styles.cardActions}>
+                <button onClick={() => navigate(`/produtos/editar/${produto._id}`)} className={styles.button}>Editar</button>
+                <button onClick={() => excluirProduto(produto._id)} className={styles.button}>Excluir</button>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
